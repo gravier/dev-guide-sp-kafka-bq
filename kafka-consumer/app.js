@@ -10,8 +10,6 @@ const bq = BigQuery({
   projectId: project
 });
 
-//const schemaPageview = ['name', 'value', 'country', 'location', 'geoIp', 'useragent', 'browser']
-
 var kafka = require('kafka-node'),
     Consumer = kafka.Consumer,
     client = new kafka.Client(zkNode, 'kafka-node-client'),
@@ -24,28 +22,6 @@ var kafka = require('kafka-node'),
             autoCommit: false
         }
     );
-
-var rows = [{ app_id: 'dev-guide-tracker',
-  platform: 'web',
-  etl_tstamp: '2017-05-02 18:42:08.240',
-  collector_tstamp: '2017-05-02 18:41:58.134',
-  dvce_created_tstamp: '2017-05-02 18:41:58.035',
-  event: 'page_view',
-  event_id: '19504a33-df8c-4c70-9041-e5a776b4835d'}]
-
-bq
-         .dataset(dataset)
-         .table(table)
-         .insert(rows)
-         .then((response) => {
-           if (response && response.insertErrors && response.insertErrors.length > 0) {
-             console.log('Insert errors:')
-             response.insertErrors.forEach((err) => console.error(err))
-           }
-         })
-         .catch((err) => {
-            console.error('ERROR:', err)
-         })
 
 consumer.on('message', function (message) {
    csv({noheader:true, delimiter:'\t', headers: schemaPageview})
@@ -67,7 +43,8 @@ consumer.on('message', function (message) {
     })
 })
 
-const schemaPageview =     ["app_id",
+const schemaPageview =     
+[   "app_id",
     "platform",
 
     // Date/time
@@ -307,19 +284,3 @@ const schemaPageview =     ["app_id",
 
     "true_tstamp"
 ]
-
-/*app.get('/:project/:dataset/:table', (req, res) => {
-  var p = req.params
-  var target = '`' + p.project + '.' + p.dataset + '.' + p.table + '`'
-  var query = 'SELECT * FROM ' + target;
-  bq.query({ query: query, useLegacySql: false}, 
-    function(err, rows) {
-      if(err){
-        res.status(500).json(err);
-      } else {
-        res.json(rows);
-      } 
-    });
-});
-*/
-
