@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: bq-connector
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bq-connector
+    spec:
+      containers:
+      - name: bq-connector
+        image: gravier/dev-guide-sp-kafka-bq:connector-latest
+        env:
+        - name: BIND_TO
+          value: "zookeeper-service:2181"
+        - name: BQ_PROJECT
+          value: fuzzylabs-1314
+        - name: BQ_DATASET
+          value: test
+        - name: BQ_TABLE
+          value: cs_pipe

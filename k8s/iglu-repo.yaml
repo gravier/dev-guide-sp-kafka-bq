@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: iglu-repo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: iglu-repo
+    spec:
+      containers:
+      - name: iglu-repo
+        image: gravier/dev-guide-sp-kafka-bq:iglu-latest
+        ports:
+          - containerPort: 8020

@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kafka
+spec:
+  replicas: 1     # must be 1 because gce persistent volumes do not support simultaneous writes from multiple clients
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+      - name: kafka
+        image: ches/kafka
+        ports:
+        - containerPort: 9092
+        command: ["/bin/bash","-c"]
+        args: ["sed -i \"s/default.replication.factor=1/default.replication.factor=1/g\" /kafka/config/server.properties.template && chown kafka:kafka /data && sudo -E -u kafka /start.sh"]
+        securityContext:
+          runAsUser: 0    # root
+        env:
+        - name: KAFKA_BROKER_ID
+          value: "1"
+        - name: KAFKA_ADVERTISED_HOST_NAME
+          value: kafka-service
+        - name: ZOOKEEPER_IP
+          value: "zookeeper-service"
+        - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
+          value: "true"
+        volumeMounts:
+        - name: kafka-volume
+          mountPath: /data
+          subPath: kafka
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/bash","-c","pkill -15 kafka"]
+      nodeSelector:
+        "failure-domain.beta.kubernetes.io/zone": "europe-west1-d"
+      volumes:
+        - name: kafka-volume
+          persistentVolumeClaim:
+            claimName: kafka-volume-claim

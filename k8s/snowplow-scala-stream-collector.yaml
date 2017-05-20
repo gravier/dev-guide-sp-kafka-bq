@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: scala-stream-collector-node
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: scala-stream-collector-node
+    spec:
+      containers:
+      - name: scala-stream-collector
+        image: gravier/dev-guide-sp-kafka-bq:collector-latest
+        ports:
+          - containerPort: 8080
+        env:
+        - name: SINK
+          value: kafka
+        - name: BIND_TO
+          value: "kafka-service:9092"
+        - name: TOPIC_GOOD
+          value: raw-events
+        - name: TOPIC_BAD
+          value: bad-events

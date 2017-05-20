@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: stream-enrich
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: stream-enrich
+    spec:
+      containers:
+      - name: stream-enrich
+        image: gravier/dev-guide-sp-kafka-bq:enrich-latest
+        env:
+        - name: KAFKA_BROKERS
+          value: "kafka-service:9092"
+        - name: TOPIC_INPUT
+          value: raw-events
+        - name: TOPIC_GOOD
+          value: enrich-good-events
+        - name: TOPIC_BAD
+          value: enrich-bad-events
+        - name: IGLUREPO_PORT_8020_TCP_ADDR
+          value: iglu-repo-service
+        - name: BUFFER_TIME_LIMIT
+          value: "1000"     # "the time in milliseconds since it was last emptied [...]"

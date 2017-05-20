@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zookeeper
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zookeeper
+    spec:
+      containers:
+      - name: zookeeper
+        image: digitalwonderland/zookeeper
+        ports:
+        - containerPort: 2181
+        command: ["/bin/bash","-c"]
+        args: ["chown zookeeper:zookeeper /var/lib/zookeeper && /usr/local/sbin/start.sh"]
+        securityContext:
+          runAsUser: 0    # root
+        env:
+          - name: ZOOKEEPER_ID
+            value: "1"
+          - name: ZOOKEEPER_SERVER_1
+            value: zookeeper-service
+        volumeMounts:
+        - name: zookeeper-volume
+          mountPath: /var/lib/zookeeper
+          subPath: zookeeper
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/bash","-c","pkill -15 zookeeper"]
+      nodeSelector:
+        "failure-domain.beta.kubernetes.io/zone": "europe-west1-d"
+      volumes:
+        - name: zookeeper-volume
+          persistentVolumeClaim:
+            claimName: zookeeper-volume-claim
