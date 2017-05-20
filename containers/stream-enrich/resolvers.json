@@ -16,7 +16,7 @@
       {
         "name": "Custom Schemas",
         "priority": 0,
-        "vendorPrefixes": [ "com.example" ],
+        "vendorPrefixes": [ "com.example_company" ],
         "connection": {
           "http": {
             "uri": "http://__IGLU_REPO__"
