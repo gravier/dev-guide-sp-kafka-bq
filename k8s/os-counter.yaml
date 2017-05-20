@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: os-counter
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: os-counter
+    spec:
+      containers:
+      - name: os-counter
+        image: gravier/dev-guide-sp-kafka-bq:counter-latest
+        imagePullPolicy: Always
+        env:
+        - name: BIND_TO
+          value: "zookeeper-service:2181"
