@@ -16,7 +16,7 @@
       {
         "name": "Custom Schemas",
         "priority": 0,
-        "vendorPrefixes": [ "com.serenataflowers" ],
+        "vendorPrefixes": [ "com.example" ],
         "connection": {
           "http": {
             "uri": "http://__IGLU_REPO__"
