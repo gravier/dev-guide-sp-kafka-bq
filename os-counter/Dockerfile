@@ -1,7 +1,7 @@
 FROM node:4.5
-COPY index.html .
+COPY index.js .
 COPY package.json .
-COPY public .
+COPY public public
 
 RUN npm install
 CMD npm start
