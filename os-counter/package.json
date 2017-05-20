@@ -1,0 +1,21 @@
+{
+  "name": "os-counter",
+  "version": "1.0.0",
+  "description": "counts os types from kafka stream end sends to client using socket.io",
+  "main": "index.js",
+  "keywords": [
+    "socket.io",
+    "os-counter"
+  ],
+  "dependencies": {
+    "express": "4.9.x",
+    "socket.io": "latest",
+    "csvtojson": "^1.1.0",
+    "kafka-node": "^1.6.0"    
+  },
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "Evaldas Miliauskas",
+  "license": "MIT"
+}

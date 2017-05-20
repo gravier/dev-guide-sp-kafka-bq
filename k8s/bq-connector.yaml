@@ -12,6 +12,7 @@ spec:
       containers:
       - name: bq-connector
         image: gravier/dev-guide-sp-kafka-bq:connector-latest
+        imagePullPolicy: Always
         env:
         - name: BIND_TO
           value: "zookeeper-service:2181"

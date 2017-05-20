@@ -65,7 +65,7 @@
       }, 
       {
         "name": "domain_sessionidx", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "network_userid", 
@@ -89,11 +89,11 @@
       }, 
       {
         "name": "geo_latitude", 
-        "type": "FLOAT"
+        "type": "STRING"
       }, 
       {
         "name": "geo_longitude", 
-        "type": "FLOAT"
+        "type": "STRING"
       }, 
       {
         "name": "geo_region_name", 
@@ -137,7 +137,7 @@
       }, 
       {
         "name": "page_urlport", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "page_urlpath", 
@@ -161,7 +161,7 @@
       }, 
       {
         "name": "refr_urlport", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "refr_urlpath", 
@@ -289,19 +289,19 @@
       }, 
       {
         "name": "pp_xoffset_min", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "pp_xoffset_max", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "pp_yoffset_min", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "pp_yoffset_max", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "useragent", 
@@ -333,43 +333,43 @@
       }, 
       {
         "name": "br_features_pdf", 
-        "type": "BOOLEAN"
+        "type": "STRING"
       }, 
       {
         "name": "br_features_flash", 
-        "type": "BOOLEAN"
+        "type": "STRING"
       }, 
       {
         "name": "br_features_java", 
-        "type": "BOOLEAN"
+        "type": "STRING"
       }, 
       {
         "name": "br_features_director", 
-        "type": "BOOLEAN"
+        "type": "STRING"
       }, 
       {
         "name": "br_features_quicktime", 
-        "type": "BOOLEAN"
+        "type": "STRING"
       }, 
       {
         "name": "br_features_realplayer", 
-        "type": "BOOLEAN"
+        "type": "STRING"
       }, 
       {
         "name": "br_features_windowsmedia", 
-        "type": "BOOLEAN"
+        "type": "STRING"
       }, 
       {
         "name": "br_features_gears", 
-        "type": "BOOLEAN"
+        "type": "STRING"
       }, 
       {
         "name": "br_features_silverlight", 
-        "type": "BOOLEAN"
+        "type": "STRING"
       }, 
       {
         "name": "br_cookies", 
-        "type": "BOOLEAN"
+        "type": "STRING"
       }, 
       {
         "name": "br_colordepth", 
@@ -377,11 +377,11 @@
       }, 
       {
         "name": "br_viewwidth", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "br_viewheight", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "os_name", 
@@ -405,15 +405,15 @@
       }, 
       {
         "name": "dvce_ismobile", 
-        "type": "BOOLEAN"
+        "type": "STRING"
       }, 
       {
         "name": "dvce_screenwidth", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "dvce_screenheight", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "doc_charset", 
@@ -421,11 +421,11 @@
       }, 
       {
         "name": "doc_width", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "doc_height", 
-        "type": "INTEGER"
+        "type": "STRING"
       }, 
       {
         "name": "tr_currency", 
@@ -485,6 +485,10 @@
       }, 
       {
         "name": "derived_contexts", 
+        "type": "STRING"
+      }, 
+      {
+        "name": "contexts", 
         "type": "STRING"
       }, 
       {

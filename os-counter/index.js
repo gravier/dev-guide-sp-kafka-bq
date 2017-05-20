@@ -1,14 +1,14 @@
 'use strict';
 
-const BigQuery = require('@google-cloud/bigquery')
 const csv = require('csvtojson')
 const zkNode = process.env.BIND_TO
-const project = process.env.BQ_PROJECT
-const dataset = process.env.BQ_DATASET
-const table = process.env.BQ_TABLE
-const bq = BigQuery({
-  projectId: project
-});
+const express = require('express');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const port = process.env.PORT || 3000;
+
+app.use(express.static(__dirname + '/public'));
 
 var kafka = require('kafka-node'),
     Consumer = kafka.Consumer,
@@ -22,33 +22,21 @@ var kafka = require('kafka-node'),
             autoCommit: false
         }
     );
-
-consumer.on('message', function (message) {
+    
+function onConnection(socket){
+  console.log("socket initiated")
+  consumer.on('message', function (message) {
    csv({noheader:true, delimiter:'\t', headers: schemaPageview})
    .fromString(message.value)
    .on('json',(jsonRow)=>{
-	   //console.log(message.value)
-	   //console.log(jsonRow)
-	   
-       bq
-         .dataset(dataset)
-         .table(table)
-         .insert([jsonRow])
-         .then((response) => {
-           if (response && response.insertErrors && response.insertErrors.length > 0) {
-             console.log('Insert errors:')
-             response.insertErrors.forEach((err) => console.error(err))
-           }
-         })
-         .catch((err) => {
-            console.error('ERROR:', err)
-            if (err && err.response && err.response.insertErrors && err.response.insertErrors.length > 0) {
-             console.log('Insert errors:')
-             err.response.insertErrors.forEach((ierr) => console.error(ierr))
-           }
-         })
+	   socket.broadcast.emit('pageview', jsonRow);
     })
-})
+  })
+}
+
+io.on('connection', onConnection);
+
+http.listen(port, () => console.log('listening on port ' + port));
 
 const schemaPageview =     
 [   "app_id",
