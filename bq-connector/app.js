@@ -26,11 +26,11 @@ var kafka = require('kafka-node'),
 consumer.on('message', function (message) {
    csv({noheader:true, delimiter:'\t', headers: schemaPageview})
    .fromString(message.value)
-   .on('json',(csvRow)=>{
+   .on('json',(jsonRow)=>{
        bq
          .dataset(dataset)
          .table(table)
-         .insert([message.value])
+         .insert([jsonRow])
          .then((response) => {
            if (response && response.insertErrors && response.insertErrors.length > 0) {
              console.log('Insert errors:')
