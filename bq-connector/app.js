@@ -27,6 +27,9 @@ consumer.on('message', function (message) {
    csv({noheader:true, delimiter:'\t', headers: schemaPageview})
    .fromString(message.value)
    .on('json',(jsonRow)=>{
+	   console.log(message.value)
+	   console.log(jsonRow)
+	   
        bq
          .dataset(dataset)
          .table(table)
@@ -39,6 +42,10 @@ consumer.on('message', function (message) {
          })
          .catch((err) => {
             console.error('ERROR:', err)
+            if (err && err.response && err.response.insertErrors && err.response.insertErrors.length > 0) {
+             console.log('Insert errors:')
+             err.response.insertErrors.forEach((ierr) => console.error(ierr))
+           }
          })
     })
 })
