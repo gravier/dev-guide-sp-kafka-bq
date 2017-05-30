@@ -16,7 +16,7 @@ gcloud container clusters create clickstream-pipeline --num-nodes=2 --scopes big
 you only need bigquery for writing events
 couple of nodes are recommended as kubernetes mast	er node has significant allocation of resources not leaving enough more than 1-2 deployments.
 
-### 2. add volumes for kafka and zookeeper
+### 2. add disks for kafka and zookeeper
 ```
 gcloud compute disks create --size=50GB --zone=europe-west1-d zookeeper-volume
 gcloud compute disks create --size=100GB --zone=europe-west1-d kafka-volume
@@ -97,7 +97,7 @@ window.snowplow('newTracker', 'cf', '<collector-ip>', { // Initialise a tracker
 3. adding endpoints for logs and monitoring
 
 # slides
-
+https://www.slideshare.net/EvaldasMiliauskas1/developers-guide-for-building-realtime-clickstream-pipeline-with-snowplow-apach-kafka-and-bigquery
 
 # talk
 https://www.youtube.com/watch?v=t3bISkp7zBw
