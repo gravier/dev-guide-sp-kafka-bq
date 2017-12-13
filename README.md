@@ -101,3 +101,6 @@ https://www.slideshare.net/EvaldasMiliauskas1/developers-guide-for-building-real
 
 # talk
 https://www.youtube.com/watch?v=t3bISkp7zBw
+
+# company
+for clickstream pipeline to track ecommerce visitors check https://stacktome.com#customer-retention
