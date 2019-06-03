@@ -102,5 +102,5 @@ https://www.slideshare.net/EvaldasMiliauskas1/developers-guide-for-building-real
 # talk
 https://www.youtube.com/watch?v=t3bISkp7zBw
 
-# company
-for clickstream pipeline to track ecommerce visitors check https://stacktome.com#customer-retention
+# resources
+to learn more on clickstream data have a look at this post https://stacktome.com/blog/a-guide-to-data-warehousing-clickstream-data?utm_source=github&utm_campaign=sm:organic|blog|post-7965&utm_medium=resource#Clickstream_analysis
