@@ -1,6 +1,12 @@
 # dev-guide-sp-kafka-bq
 code for talk developers guide for realtime pipeline with snowplow kafka and bigquery
 
+# talk
+https://www.youtube.com/watch?v=t3bISkp7zBw
+
+# slides
+https://www.slideshare.net/EvaldasMiliauskas1/developers-guide-for-building-realtime-clickstream-pipeline-with-snowplow-apach-kafka-and-bigquery
+
 # How to setup snowplow schemas
 
 - setup schemas folder
@@ -96,11 +102,6 @@ window.snowplow('newTracker', 'cf', '<collector-ip>', { // Initialise a tracker
 2. processing custom contexts
 3. adding endpoints for logs and monitoring
 
-# slides
-https://www.slideshare.net/EvaldasMiliauskas1/developers-guide-for-building-realtime-clickstream-pipeline-with-snowplow-apach-kafka-and-bigquery
-
-# talk
-https://www.youtube.com/watch?v=t3bISkp7zBw
 
 # resources
 to learn more on clickstream data have a look at this post https://stacktome.com/blog/a-guide-to-data-warehousing-clickstream-data?utm_source=github&utm_campaign=sm:organic|blog|post-7965&utm_medium=resource#Clickstream_analysis
